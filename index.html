@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="description" content="Ben234 Clipper Bot — a personal tool that publishes the owner's own short clips to his own TikTok account (@ben234924) using TikTok's official Content Posting API." />
+    <link rel="icon" href="data:," />
+    <title>Ben234 Clipper Bot</title>
+    <style>
+      :root{
+        --bg:#ffffff;
+        --bg-soft:#f6f7f8;
+        --surface:#ffffff;
+        --text:#111214;
+        --muted:#5b6068;
+        --line:#e6e8eb;
+        --accent:#0f766e;
+        --accent-strong:#0b5e57;
+        --accent-soft:#e6f4f2;
+        --cyan:#25f4ee;
+        --pink:#fe2c55;
+        --radius:16px;
+      }
+      @media (prefers-color-scheme: dark){
+        :root{
+          --bg:#0e1012;
+          --bg-soft:#14171a;
+          --surface:#171a1e;
+          --text:#f2f3f4;
+          --muted:#a7adb6;
+          --line:#262b31;
+          --accent:#2dd4bf;
+          --accent-strong:#5eead4;
+          --accent-soft:#12312d;
+        }
+      }
+      *{box-sizing:border-box}
+      html{scroll-behavior:smooth}
+      body{
+        margin:0;
+        font-family: ui-sans-system, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background:var(--bg);
+        color:var(--text);
+        line-height:1.6;
+        -webkit-font-smoothing:antialiased;
+      }
+      a{color:var(--accent-strong)}
+      .wrap{max-width:960px;margin:0 auto;padding:0 20px}
+
+      /* Header */
+      header{
+        position:sticky;top:0;z-index:10;
+        background:color-mix(in srgb, var(--bg) 88%, transparent);
+        backdrop-filter: blur(10px);
+        border-bottom:1px solid var(--line);
+      }
+      .nav{
+        display:flex;align-items:center;justify-content:space-between;gap:16px;
+        min-height:64px;
+      }
+      .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text)}
+      .mark{
+        width:40px;height:40px;border-radius:10px;background:#111214;color:#fff;
+        display:grid;place-items:center;flex:0 0 auto;
+        border:1px solid #111214;
+      }
+      @media (prefers-color-scheme: dark){ .mark{background:#fff;color:#111214;border-color:#fff} }
+      .mark svg{width:22px;height:22px}
+      .brand strong{font-size:16px;letter-spacing:-.02em;line-height:1.1;display:block}
+      .brand span{font-size:12.5px;color:var(--muted);line-height:1.1;display:block;margin-top:2px}
+      .navlinks{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}
+      .navlinks a{
+        color:var(--text);text-decoration:none;font-size:14px;font-weight:500;
+        padding:10px 12px;border-radius:999px;min-height:40px;display:inline-flex;align-items:center;
+      }
+      .navlinks a:hover{background:var(--bg-soft)}
+
+      /* Hero */
+      .hero{padding:56px 0 36px}
+      .eyebrow{
+        display:inline-flex;align-items:center;gap:8px;
+        font-size:13px;font-weight:600;letter-spacing:.02em;
+        background:var(--accent-soft);color:var(--accent-strong);
+        padding:6px 12px;border-radius:999px;border:1px solid var(--line);
+      }
+      .eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--accent);display:block}
+      h1{
+        font-size:clamp(36px,6vw,56px);line-height:1.02;letter-spacing:-.04em;
+        margin:18px 0 14px;font-weight:800;max-width:700px;
+      }
+      .lead{font-size:18px;line-height:1.65;color:var(--muted);max-width:640px;margin:0}
+      .lead strong{color:var(--text);font-weight:600}
+      .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+      .btn{
+        display:inline-flex;align-items:center;justify-content:center;gap:8px;
+        min-height:48px;padding:0 20px;border-radius:12px;font-weight:600;font-size:15px;
+        text-decoration:none;border:1px solid transparent;cursor:pointer;
+      }
+      .btn-primary{background:#111214;color:#fff;border-color:#111214}
+      @media (prefers-color-scheme: dark){ .btn-primary{background:#fff;color:#111214;border-color:#fff} }
+      .btn-secondary{background:var(--surface);color:var(--text);border-color:var(--line)}
+      .btn-secondary:hover{border-color:var(--muted)}
+
+      .facts{
+        margin-top:36px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
+      }
+      .fact{
+        background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--radius);
+        padding:16px 18px;
+      }
+      .fact label{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px}
+      .fact p{margin:0;font-weight:600;font-size:15px;line-height:1.4}
+      .fact p small{display:block;font-weight:400;color:var(--muted);font-size:13.5px;margin-top:2px}
+
+      /* Sections */
+      section{padding:36px 0}
+      .section-head{max-width:640px;margin-bottom:22px}
+      .section-head h2{font-size:26px;letter-spacing:-.03em;line-height:1.15;margin:0 0 8px}
+      .section-head p{margin:0;color:var(--muted);font-size:16px}
+
+      .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+      .step{
+        background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px;
+      }
+      .num{
+        width:36px;height:36px;border-radius:50%;background:#111214;color:#fff;
+        display:grid;place-items:center;font-weight:700;font-size:15px;margin-bottom:14px;
+      }
+      @media (prefers-color-scheme: dark){ .num{background:#fff;color:#111214} }
+      .step h3{margin:0 0 8px;font-size:16.5px;line-height:1.3}
+      .step p{margin:0;color:var(--muted);font-size:14.5px;line-height:1.6}
+
+      .privacy-box{
+        display:grid;grid-template-columns:1.1fr .9fr;gap:0;
+        border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--surface);
+      }
+      .privacy-main{padding:26px}
+      .privacy-main h2{margin:0 0 10px;font-size:24px;letter-spacing:-.02em}
+      .privacy-main p{margin:0;color:var(--muted)}
+      .privacy-list{background:var(--bg-soft);border-left:1px solid var(--line);padding:22px 26px}
+      .privacy-list ul{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+      .privacy-list li{display:flex;gap:10px;font-size:14.5px;line-height:1.55}
+      .check{flex:0 0 auto;width:22px;height:22px;border-radius:50%;background:var(--accent-soft);color:var(--accent-strong);display:grid;place-items:center;margin-top:1px}
+      .check svg{width:13px;height:13px}
+
+      .legal{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+      .legal-card{
+        display:flex;gap:16px;align-items:flex-start;text-decoration:none;color:var(--text);
+        border:1px solid var(--line);border-radius:var(--radius);padding:20px;background:var(--surface);
+        min-height:44px;
+      }
+      .legal-card:hover{border-color:var(--muted)}
+      .legal-icon{width:44px;height:44px;border-radius:12px;background:var(--bg-soft);border:1px solid var(--line);display:grid;place-items:center;flex:0 0 auto}
+      .legal-icon svg{width:20px;height:20px}
+      .legal-card strong{display:block;font-size:16px;margin-bottom:4px}
+      .legal-card span{display:block;color:var(--muted);font-size:14px;line-height:1.5}
+      .legal-card .open{color:var(--accent-strong);font-weight:600;font-size:14px;margin-top:8px}
+
+      footer{border-top:1px solid var(--line);margin-top:12px;padding:28px 0 40px;background:var(--bg-soft)}
+      .footer-grid{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:flex-start}
+      footer p{margin:0;color:var(--muted);font-size:14px;line-height:1.6}
+      footer a{font-weight:600}
+      .footer-meta{font-size:13px;color:var(--muted)}
+
+      @media (max-width:720px){
+        .navlinks{display:none}
+        .hero{padding:36px 0 24px}
+        .facts,.steps,.legal{grid-template-columns:1fr}
+        .privacy-box{grid-template-columns:1fr}
+        .privacy-list{border-left:none;border-top:1px solid var(--line)}
+      }
+      @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap nav">
+        <a class="brand" href="#top" aria-label="Ben234 Clipper Bot — home">
+          <span class="mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><path d="M8 7.5 20 19M8 16.5 20 5"/></svg>
+          </span>
+          <span><strong>Ben234 Clipper Bot</strong><span>Personal TikTok publishing tool</span></span>
+        </a>
+        <nav class="navlinks" aria-label="Main">
+          <a href="#how-it-works">How it works</a>
+          <a href="#privacy">Privacy</a>
+          <a href="#legal">Legal</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <div class="wrap">
+        <!-- Hero -->
+        <div class="hero">
+          <span class="eyebrow"><i></i> Personal tool &middot; Single user</span>
+          <h1>Ben234 Clipper Bot</h1>
+          <p class="lead">
+            A personal tool that publishes the owner&rsquo;s own short clips to his own
+            TikTok account — <strong>@ben234924</strong> — using TikTok&rsquo;s official
+            Content Posting API. It is built for a single user: the owner.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#how-it-works">How it works</a>
+            <a class="btn btn-secondary" href="#legal">Terms &amp; Privacy Policy</a>
+          </div>
+
+          <div class="facts" aria-label="App facts">
+            <div class="fact">
+              <label>TikTok account</label>
+              <p>@ben234924 <small>The owner&rsquo;s own account only</small></p>
+            </div>
+            <div class="fact">
+              <label>Integration</label>
+              <p>TikTok Content Posting API <small>Official API, with authorization</small></p>
+            </div>
+            <div class="fact">
+              <label>Platform</label>
+              <p>Web <small>Private tool — not a public service</small></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- How it works -->
+        <section id="how-it-works" aria-labelledby="how-title">
+          <div class="section-head">
+            <h2 id="how-title">How it works</h2>
+            <p>Three simple steps, from clip to published video.</p>
+          </div>
+          <div class="steps">
+            <article class="step">
+              <div class="num" aria-hidden="true">1</div>
+              <h3>The owner creates a clip</h3>
+              <p>The owner creates short clips from campaign footage, ready to publish.</p>
+            </article>
+            <article class="step">
+              <div class="num" aria-hidden="true">2</div>
+              <h3>The bot uploads it</h3>
+              <p>The bot uploads the clip through TikTok&rsquo;s official Content Posting API, using the owner&rsquo;s authorization.</p>
+            </article>
+            <article class="step">
+              <div class="num" aria-hidden="true">3</div>
+              <h3>Review &amp; post</h3>
+              <p>The owner reviews the video, and it is posted to his TikTok account, @ben234924.</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- Privacy -->
+        <section id="privacy" aria-labelledby="privacy-title">
+          <div class="privacy-box">
+            <div class="privacy-main">
+              <h2 id="privacy-title">Privacy</h2>
+              <p>
+                This app only accesses the owner&rsquo;s own TikTok account, with his
+                authorization. It is not a service for other users, and it is not
+                offered to the public.
+              </p>
+              <p style="margin-top:12px">
+                For the full details, please read the
+                <a href="privacy-policy/">Privacy Policy</a>.
+              </p>
+            </div>
+            <div class="privacy-list">
+              <ul>
+                <li>
+                  <span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+                  <span>Only the owner&rsquo;s own account — no access to other users&rsquo; accounts.</span>
+                </li>
+                <li>
+                  <span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+                  <span>Does not collect, store, or share data from other users.</span>
+                </li>
+                <li>
+                  <span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+                  <span>No ads, and no selling of data.</span>
+                </li>
+                <li>
+                  <span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+                  <span>Access can be revoked at any time from TikTok settings.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Legal -->
+        <section id="legal" aria-labelledby="legal-title">
+          <div class="section-head">
+            <h2 id="legal-title">Legal</h2>
+            <p>The terms and privacy policy for this app.</p>
+          </div>
+          <div class="legal">
+            <a class="legal-card" href="terms-of-service/">
+              <span class="legal-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg></span>
+              <span>
+                <strong>Terms of Service</strong>
+                <span>The rules for using Ben234 Clipper Bot.</span>
+                <span class="open">Read the Terms of Service &rarr;</span>
+              </span>
+            </a>
+            <a class="legal-card" href="privacy-policy/">
+              <span class="legal-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-3.6 8-10V5l-8-3-8 3v7c0 6.4 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></span>
+              <span>
+                <strong>Privacy Policy</strong>
+                <span>How this app handles information — in short: it doesn&rsquo;t collect other people&rsquo;s data.</span>
+                <span class="open">Read the Privacy Policy &rarr;</span>
+              </span>
+            </a>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer id="contact">
+      <div class="wrap footer-grid">
+        <div>
+          <p><strong style="color:var(--text)">Ben234 Clipper Bot</strong></p>
+          <p style="margin-top:6px">Contact: <a href="mailto:garinjuly@gmail.com">garinjuly@gmail.com</a></p>
+          <p>TikTok account: @ben234924</p>
+        </div>
+        <p class="footer-meta">
+          Last updated: 23 November 2026<br />
+          &copy; 2026 Ben234 Clipper Bot. All rights reserved.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
