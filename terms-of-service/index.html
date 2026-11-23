@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="description" content="Terms of Service for Ben234 Clipper Bot — a personal tool that publishes the owner's own short clips to the owner's own TikTok account via the official TikTok Content Posting API." />
+    <link rel="icon" href="data:," />
+    <title>Ben234 Clipper Bot — Terms of Service</title>
+    <style>
+      :root {
+        --bg: #ffffff;
+        --surface: #f7f7f5;
+        --surface-2: #efefed;
+        --text: #161823;
+        --muted: #5c5e66;
+        --faint: #8a8b91;
+        --border: #e4e4e0;
+        --accent: #fe2c55;
+        --accent-hover: #d91e42;
+        --accent-soft: #fff0f3;
+        --teal: #25f4ee;
+        --radius: 14px;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #121214;
+          --surface: #1c1c1f;
+          --surface-2: #26262a;
+          --text: #f2f2f3;
+          --muted: #a8a9ae;
+          --faint: #7c7d84;
+          --border: #2e2e33;
+          --accent: #ff4d6d;
+          --accent-hover: #ff6b85;
+          --accent-soft: #2b1a1f;
+        }
+      }
+      * { box-sizing: border-box; }
+      html { -webkit-text-size-adjust: 100%; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        font-size: 16.5px;
+        line-height: 1.75;
+      }
+      a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+      a:hover { color: var(--accent-hover); }
+
+      .wrap {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 0 20px 64px;
+      }
+
+      /* Document header */
+      .doc-head {
+        padding: 40px 0 28px;
+        border-bottom: 2px solid var(--text);
+      }
+      .doc-head .app-label {
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin: 0 0 10px;
+      }
+      .doc-head .app-label strong { color: var(--text); }
+      h1 {
+        font-family: Georgia, "Times New Roman", Times, serif;
+        font-size: 40px;
+        line-height: 1.08;
+        letter-spacing: -0.02em;
+        margin: 0 0 14px;
+        font-weight: 700;
+      }
+      .lead {
+        font-size: 17.5px;
+        line-height: 1.65;
+        color: var(--muted);
+        margin: 0;
+        max-width: 62ch;
+      }
+      .meta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 20px;
+        margin-top: 20px;
+        font-size: 14px;
+        color: var(--muted);
+      }
+      .meta-row span { display: inline-flex; align-items: center; gap: 6px; }
+      .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex: none; }
+
+      /* Key facts */
+      .facts {
+        margin: 28px 0 8px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        overflow: hidden;
+      }
+      .facts h2 {
+        font-size: 13px;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        margin: 0;
+        padding: 16px 20px 4px;
+        color: var(--muted);
+        font-weight: 700;
+      }
+      .facts dl { margin: 0; padding: 8px 20px 18px; }
+      .facts .row {
+        display: grid;
+        grid-template-columns: 168px 1fr;
+        gap: 6px 16px;
+        padding: 10px 0;
+        border-top: 1px solid var(--border);
+      }
+      .facts .row:first-child { border-top: 0; }
+      .facts dt { font-weight: 600; font-size: 14.5px; }
+      .facts dd { margin: 0; font-size: 14.5px; color: var(--muted); line-height: 1.6; }
+      .facts dd a { word-break: break-all; }
+
+      /* Sections */
+      section { padding-top: 34px; }
+      section h2 {
+        font-family: Georgia, "Times New Roman", Times, serif;
+        font-size: 24px;
+        line-height: 1.25;
+        margin: 0 0 12px;
+        letter-spacing: -0.01em;
+        display: flex;
+        gap: 12px;
+        align-items: baseline;
+      }
+      section h2 .num {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--accent);
+        background: var(--accent-soft);
+        border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
+        width: 28px; height: 28px;
+        border-radius: 50%;
+        display: inline-flex; align-items: center; justify-content: center;
+        flex: none;
+        transform: translateY(-2px);
+      }
+      section p { margin: 0 0 14px; color: #2b2d36; }
+      @media (prefers-color-scheme: dark) {
+        section p { color: #d8d8db; }
+      }
+      section p:last-child { margin-bottom: 0; }
+      ul { margin: 0 0 14px; padding-left: 22px; }
+      li { margin-bottom: 8px; color: #2b2d36; }
+      @media (prefers-color-scheme: dark) { li { color: #d8d8db; } }
+      li::marker { color: var(--accent); }
+      strong { color: var(--text); }
+
+      .callout {
+        background: var(--accent-soft);
+        border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+        border-radius: 10px;
+        padding: 16px 18px;
+        margin: 18px 0 4px;
+        font-size: 15.5px;
+        line-height: 1.65;
+      }
+      .callout p { margin: 0; }
+      .callout .callout-title { font-weight: 700; margin-bottom: 4px; color: var(--text); }
+
+      .steps {
+        counter-reset: step;
+        list-style: none;
+        padding: 0;
+        margin: 0 0 14px;
+      }
+      .steps li {
+        counter-increment: step;
+        display: flex;
+        gap: 12px;
+        margin-bottom: 10px;
+      }
+      .steps li::before {
+        content: counter(step);
+        width: 24px; height: 24px; flex: none;
+        border-radius: 50%;
+        background: var(--text);
+        color: var(--bg);
+        font-size: 13px; font-weight: 700;
+        display: inline-flex; align-items: center; justify-content: center;
+        margin-top: 3px;
+      }
+
+      footer {
+        margin-top: 52px;
+        padding-top: 24px;
+        border-top: 1px solid var(--border);
+        font-size: 14px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+      footer .contact-box {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+      footer .contact-box p { margin: 0 0 6px; }
+      footer .contact-box p:last-child { margin-bottom: 0; }
+      .contact-email {
+        display: inline-flex;
+        align-items: center;
+        min-height: 36px;
+        font-weight: 600;
+        font-size: 16px;
+      }
+
+      @media (max-width: 560px) {
+        h1 { font-size: 32px; }
+        .doc-head { padding-top: 28px; }
+        .facts .row { grid-template-columns: 1fr; gap: 2px; }
+        section h2 { font-size: 21px; }
+        body { font-size: 16px; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <header class="doc-head">
+        <p class="app-label"><strong>Ben234 Clipper Bot</strong> &nbsp;·&nbsp; Legal</p>
+        <h1>Terms of Service</h1>
+        <p class="lead">These terms describe how Ben234 Clipper Bot works and the rules for using it. The app is a small, personal tool — it is not a public service and it is not offered to other users.</p>
+        <div class="meta-row">
+          <span><span class="dot"></span> Effective: November 23, 2026</span>
+          <span>Last updated: November 23, 2026</span>
+        </div>
+      </header>
+
+      <div class="facts" aria-label="Key facts">
+        <h2>At a glance</h2>
+        <dl>
+          <div class="row">
+            <dt>App</dt>
+            <dd>Ben234 Clipper Bot</dd>
+          </div>
+          <div class="row">
+            <dt>Purpose</dt>
+            <dd>Publish the owner’s own short video clips to the owner’s own TikTok account</dd>
+          </div>
+          <div class="row">
+            <dt>TikTok account</dt>
+            <dd>@ben234924 — the owner’s personal account only</dd>
+          </div>
+          <div class="row">
+            <dt>How it connects</dt>
+            <dd>Official TikTok Content Posting API, with the owner’s authorization</dd>
+          </div>
+          <div class="row">
+            <dt>Contact</dt>
+            <dd><a href="mailto:garinjuly@gmail.com">garinjuly@gmail.com</a></dd>
+          </div>
+        </dl>
+      </div>
+
+      <section id="about">
+        <h2><span class="num">1</span> About this app</h2>
+        <p>Ben234 Clipper Bot (“the App”, “the Bot”) is a personal automation tool owned and operated by a single individual. Its only function is to publish short video clips that the owner created or owns to the owner’s own TikTok account, <strong>@ben234924</strong>, through TikTok’s official Content Posting API.</p>
+        <p>The App is not a commercial product. It has no public sign-up, no user accounts for anyone else, and no feature that lets a third party publish to, read from, or manage any TikTok account.</p>
+      </section>
+
+      <section id="acceptance">
+        <h2><span class="num">2</span> Acceptance of these terms</h2>
+        <p>By authorizing the App to access the TikTok account @ben234924, the account owner agrees to these Terms of Service. If the owner does not agree, the App should not be authorized, and any existing authorization should be revoked in TikTok settings as described in Section 7.</p>
+        <p>Use of the App must also comply with TikTok’s own Terms of Service, Community Guidelines, and Developer Terms.</p>
+      </section>
+
+      <section id="access">
+        <h2><span class="num">3</span> Access to the TikTok account</h2>
+        <p>The App accesses a TikTok account <strong>only</strong> after the account owner grants permission through TikTok’s official authorization flow.</p>
+        <ul>
+          <li>Access is limited to the owner’s own account, <strong>@ben234924</strong>.</li>
+          <li>The App requests only the permissions needed to publish the owner’s own clips — in particular, permission to post video content on the owner’s behalf.</li>
+          <li>The App does not ask for, receive, or store the owner’s TikTok password. Authorization is handled entirely by TikTok.</li>
+          <li>The App does not access the accounts, content, messages, or data of any other TikTok user.</li>
+        </ul>
+      </section>
+
+      <section id="content">
+        <h2><span class="num">4</span> Content</h2>
+        <p>All clips published through the App belong to the owner, or the owner has the right to publish them. The owner is responsible for the content of every clip published to @ben234924, including its title, caption, and compliance with copyright law and TikTok’s Community Guidelines.</p>
+        <p>The App does not create content on its own, does not publish content belonging to other people, and does not repost other users’ videos.</p>
+      </section>
+
+      <section id="acceptable-use">
+        <h2><span class="num">5</span> Acceptable use</h2>
+        <p>The App may only be used to publish the owner’s own clips to the owner’s own account. The App must not be used to:</p>
+        <ul>
+          <li>Post spam, misleading content, or content that violates TikTok’s Community Guidelines;</li>
+          <li>Publish content that infringes someone else’s copyright or other rights;</li>
+          <li>Access, attempt to access, or interfere with any TikTok account other than @ben234924;</li>
+          <li>Circumvent TikTok’s API limits, review process, or platform rules.</li>
+        </ul>
+      </section>
+
+      <section id="data">
+        <h2><span class="num">6</span> Data, ads, and sale of data</h2>
+        <p>The App is built to handle as little data as possible:</p>
+        <ul>
+          <li><strong>No collection of other users’ data.</strong> The App does not collect, store, or share personal data belonging to other TikTok users or any other person.</li>
+          <li><strong>No sale of data.</strong> No data is sold, rented, or traded to anyone, for any purpose.</li>
+          <li><strong>No advertising.</strong> The App contains no ads and no advertising trackers, and it is not used for marketing to third parties.</li>
+          <li><strong>No analytics on other people.</strong> The App does not profile, track, or analyze other users.</li>
+        </ul>
+        <p>How authorization tokens and the owner’s own clips are handled is described further in the App’s Privacy Policy.</p>
+        <div class="callout">
+          <p class="callout-title">In short</p>
+          <p>One owner, one account (@ben234924), one job: posting that owner’s own clips. Nothing is collected from anyone else, nothing is sold, and there are no ads.</p>
+        </div>
+      </section>
+
+      <section id="revoke">
+        <h2><span class="num">7</span> Revoking access</h2>
+        <p>The owner can revoke the App’s access at any time, for any reason, without contacting us first. Revoking access stops the App from publishing to the account.</p>
+        <p>To revoke access in TikTok:</p>
+        <ol class="steps">
+          <li><span>Open TikTok and go to <strong>Profile → Menu → Settings and privacy</strong>.</span></li>
+          <li><span>Open <strong>Security &amp; permissions → Apps and services</strong> (wording may vary slightly by app version).</span></li>
+          <li><span>Select <strong>Ben234 Clipper Bot</strong> and remove its access.</span></li>
+        </ol>
+        <p>Once access is revoked, the App can no longer post to @ben234924 unless the owner authorizes it again.</p>
+      </section>
+
+      <section id="availability">
+        <h2><span class="num">8</span> Availability and changes to the App</h2>
+        <p>The App is provided as a personal tool on an “as is” and “as available” basis, with no guarantee of uptime or uninterrupted service. The owner may change, pause, or discontinue the App at any time.</p>
+        <p>Because the App depends on TikTok’s Content Posting API, its availability and behavior may also change if TikTok changes its API, permissions, or review requirements.</p>
+      </section>
+
+      <section id="liability">
+        <h2><span class="num">9</span> Limitation of liability</h2>
+        <p>To the maximum extent permitted by law, the App’s owner is not liable for indirect or consequential loss arising from use of the App, including loss caused by API outages, failed or delayed posts, or changes made by TikTok to its platform or developer program. Nothing in these terms limits liability that cannot be limited by law.</p>
+      </section>
+
+      <section id="changes">
+        <h2><span class="num">10</span> Changes to these terms</h2>
+        <p>These terms may be updated from time to time. When they change, the “Last updated” date at the top of this page will change as well. Continued use of the App after an update means the owner accepts the updated terms.</p>
+      </section>
+
+      <footer>
+        <div class="contact-box">
+          <p><strong>Questions about these terms?</strong></p>
+          <p>Contact the owner of Ben234 Clipper Bot:</p>
+          <p><a class="contact-email" href="mailto:garinjuly@gmail.com">garinjuly@gmail.com</a></p>
+          <p>TikTok account covered by these terms: <strong>@ben234924</strong></p>
+        </div>
+        <p>Ben234 Clipper Bot — Terms of Service · Effective November 23, 2026</p>
+      </footer>
+    </main>
+  </body>
+</html>
