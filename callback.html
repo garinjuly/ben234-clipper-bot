@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ben234 Clipper Bot — Authorization Callback</title>
+<style>
+  body { font-family: system-ui, sans-serif; max-width: 640px; margin: 2rem auto; padding: 0 1rem; color: #111; }
+  h1 { font-size: 1.3rem; }
+  .code { font-family: monospace; font-size: 1.1rem; word-break: break-all; background: #f2f2f2; border: 1px solid #ccc; border-radius: 8px; padding: 1rem; }
+  .note { color: #555; }
+  .error { color: #b00020; }
+</style>
+</head>
+<body>
+<h1>Ben234 Clipper Bot — Authorization</h1>
+<p class="note">This page is the OAuth redirect target for the owner's TikTok Login Kit authorization. No data is collected here.</p>
+<div id="out"><p>Reading the authorization result…</p></div>
+<script>
+  var params = new URLSearchParams(window.location.search);
+  var out = document.getElementById('out');
+  var code = params.get('code');
+  var err = params.get('error');
+  if (code) {
+    out.innerHTML = '<p>Authorization code — copy this whole code and send it to Muse:</p><div class="code" id="code"></div><p class="note">State: <span id="state"></span></p>';
+    document.getElementById('code').textContent = code;
+    document.getElementById('state').textContent = params.get('state') || '(none)';
+  } else if (err) {
+    out.innerHTML = '<p class="error">Authorization failed: ' + err + '</p><p class="note">' + (params.get('error_description') || '') + '</p>';
+  } else {
+    out.innerHTML = '<p>No authorization code in this URL. Open this page only via the TikTok authorization flow.</p>';
+  }
+</script>
+</body>
+</html>
